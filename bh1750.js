@@ -26,11 +26,7 @@ BH1750.prototype.readLight = function (cb) {
     this.wire.readBytes(this.options.command, this.options.length, function (err, res) {
         var hi = res.readUInt8(0);
         var lo = res.readUInt8(1);
-        var lux = ((hi << 8) + lo)/1.2;
-        if (self.options.command = 0x11) {
-            lux = lux/2;
-        }
-        cb.call(self, lux);
+        cb.call(self, ((hi << 8) + lo));
     });
 };
 
